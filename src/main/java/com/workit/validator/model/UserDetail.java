@@ -1,6 +1,10 @@
 package com.workit.validator.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class UserDetail {
+
+    @NotBlank(message = "用户地址不能为空")
     private String address;
 
     private String education;

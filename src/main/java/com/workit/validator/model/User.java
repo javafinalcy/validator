@@ -1,5 +1,11 @@
 package com.workit.validator.model;
 
+
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
 /**
  * @author:
  * @Date: 2020/6/22
@@ -7,18 +13,21 @@ package com.workit.validator.model;
  */
 public class User {
 
+    @NotBlank(message = "姓名不能为空")
     private String userName;
 
+    @Range(min = 1,max = 200,message = "年龄不合法")
     private int age;
 
+    @Email
+    @NotBlank(message = "邮箱不能为空")
     private String email;
 
+    @Pattern(regexp = "F|M", message = "必须是F或M")
     private String sex;
 
-    private String idCard;
-
-    private String birthDay;
-
+    @NotNull
+    @Valid
     private UserDetail userDetail;
 
     public String getUserName() {
@@ -53,21 +62,6 @@ public class User {
         this.sex = sex;
     }
 
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
-
-    public String getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
-    }
 
     public UserDetail getUserDetail() {
         return userDetail;

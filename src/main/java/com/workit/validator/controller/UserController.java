@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 @RestController
@@ -43,6 +44,17 @@ public class UserController {
         }
         return ResultViewModelUtil.error();
     }
+
+    @PostMapping(value = "/save2")
+    @ResponseBody
+    public ResultViewModel save2(@Valid @RequestBody User user) {
+        boolean saveUser = saveUser(user);
+        if (saveUser) {
+            return ResultViewModelUtil.success();
+        }
+        return ResultViewModelUtil.error();
+    }
+
 
     public boolean saveUser(User user){
         // db 入库操作省略
