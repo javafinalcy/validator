@@ -1,5 +1,6 @@
 package com.workit.validator.controller;
 
+import com.workit.validator.annotation.ParameterValidator;
 import com.workit.validator.comm.ResultViewModelUtil;
 import com.workit.validator.model.ResultViewModel;
 import com.workit.validator.model.User;
@@ -45,9 +46,25 @@ public class UserController {
         return ResultViewModelUtil.error();
     }
 
+
     @PostMapping(value = "/save2")
     @ResponseBody
-    public ResultViewModel save2(@Valid @RequestBody User user) {
+    @ParameterValidator
+    public ResultViewModel save2(@RequestBody User user) {
+        boolean saveUser = saveUser(user);
+        if (saveUser) {
+            return ResultViewModelUtil.success();
+        }
+        return ResultViewModelUtil.error();
+    }
+
+
+
+
+
+    @PostMapping(value = "/save3")
+    @ResponseBody
+    public ResultViewModel save3(@Valid @RequestBody User user) {
         boolean saveUser = saveUser(user);
         if (saveUser) {
             return ResultViewModelUtil.success();

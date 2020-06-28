@@ -34,6 +34,8 @@ public class ExceptionHandler {
                 });
                 return ResultViewModelUtil.error(errorMsg.toString());
             }
+        }else if(exception instanceof IllegalArgumentException){
+            return ResultViewModelUtil.error(exception.getMessage());
         }
         return ResultViewModelUtil.error();
     }

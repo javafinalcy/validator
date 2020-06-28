@@ -1,6 +1,7 @@
 package com.workit.validator.model;
 
 
+import com.workit.validator.annotation.MyNotBlank;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import javax.validation.constraints.*;
 public class User {
 
     @NotBlank(message = "姓名不能为空")
+    @MyNotBlank(message = "自定义注解姓名不能为空")
     private String userName;
 
     @Range(min = 1,max = 200,message = "年龄不合法")
